@@ -2,9 +2,8 @@
 
 Prebuilt firmware for the DC34 badge (baosec-lite / bao1x) that adds a **Root
 Access** entry to the badge's own menu: scan the SAO connector's I2C bus, poke
-at whatever answers, and drive a FireFly LED controller through its 50
-animations — all from the badge's OLED and nav switch, with no computer
-attached.
+at whatever answers, and drive a **Root Access** SAO through its 50 animations —
+all from the badge's OLED and nav switch, with no computer attached.
 
 <img alt="" src="https://img.shields.io/badge/status-experimental-orange"> <img alt="" src="https://img.shields.io/badge/target-bao1x%20%2F%20baosec--lite-blue">
 
@@ -116,10 +115,10 @@ ROOT ACCESS                ROOT ACCESS           DEVICE 0x50
 ```
 
 - **Scan** walks the bus from `0x08` to `0x77` and lists everything that
-  answers. `0x50` is tagged `FireFly` because that is the LED controller this
-  was built for. Selecting a result opens it.
+  answers. Selecting a result opens it. `0x50` is the Root Access SAO, which is
+  what this app was built for, so it is called out by name in the list.
 - **Send** writes the current **Data** byte to the current **Address** — one
-  byte, no register prefix. That is exactly the FireFly's mode-select command.
+  byte, no register prefix. That is exactly the Root Access mode-select command.
 - **Address** and **Data** open the byte editor.
 - **Probe** re-tests a single device and reports `ACK`, `no response`, or a bus
   error.
@@ -139,7 +138,7 @@ Up and down change **only the digit under the caret**; press moves to the low
 nibble, and pressing again commits. Two nibbles is at most 32 presses instead of
 the 255 that stepping a whole byte would take with three buttons.
 
-### Quick Commands (FireFly)
+### Quick Commands
 
 ```
 QUICK 0x50
@@ -152,9 +151,14 @@ QUICK 0x50
   Back
 ```
 
-The FireFly has 50 built-in animations selected by a single byte `0x00`–`0x31`.
+Root Access has 50 built-in animations, selected by a single byte `0x00`–`0x31`.
 **Next** and **Previous** step through them and wrap around; **Jump to...**
 opens the byte editor bounded to `0x31`.
+
+> **The scan list shows `FireFly`, not `Root Access`.** The published firmware
+> tags `0x50` with the name of the LED-controller chip on the board rather than
+> the board's own name. Your badge is not showing you the wrong device — the
+> label just lags this documentation, and will be corrected in a later build.
 
 ### Where to plug things in
 
@@ -190,7 +194,7 @@ finding out what that does.
 | **Devices show up that are not really there** | Anything that ACKs a one-byte read is listed. Some chips ACK addresses they do not own. |
 | **A device answers on one visit and not the next** | Nothing here retries or recovers the bus. A device mid-transaction from a previous poke can NAK until it is power-cycled. |
 | **Exit drops you to the idle screen** | Not to the menu you came from. Open the menu again to re-enter. |
-| **Only single-byte writes** | There is no register-write, no block read, no repeated start. This browses a bus; it does not speak any device's protocol beyond the FireFly's one-byte mode select. |
+| **Only single-byte writes** | There is no register-write, no block read, no repeated start. This browses a bus; it does not speak any device's protocol beyond Root Access's one-byte mode select. |
 
 ### Boot fragility
 
