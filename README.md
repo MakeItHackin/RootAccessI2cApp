@@ -104,11 +104,11 @@ There is no back button. Every screen has a **Back** or **Exit** row instead.
 ### Screens
 
 ```
-ROOT ACCESS                ROOT ACCESS           DEVICE 0x50
-                                                 
-> Scan                     Scanning...           > Send
-  Send  00->50                                     Quick Commands
-  Address: 0x50            > 0x50 FireFly           Probe
+ROOT ACCESS                ROOT ACCESS            DEVICE 0x50
+
+> Scan                     Scanning...            > Send
+  Send  00->50                                      Quick Commands
+  Address: 0x50            > 0x50 Root Access       Probe
   Data:    0x00              0x68                   Rescan
   Quick Commands             Back                   Back
   Exit
@@ -154,11 +154,6 @@ QUICK 0x50
 Root Access has 50 built-in animations, selected by a single byte `0x00`–`0x31`.
 **Next** and **Previous** step through them and wrap around; **Jump to...**
 opens the byte editor bounded to `0x31`.
-
-> **The scan list shows `FireFly`, not `Root Access`.** The published firmware
-> tags `0x50` with the name of the LED-controller chip on the board rather than
-> the board's own name. Your badge is not showing you the wrong device — the
-> label just lags this documentation, and will be corrected in a later build.
 
 ### Where to plug things in
 
