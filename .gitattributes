@@ -1,0 +1,4 @@
+# These are firmware images. core.autocrlf is on by default in Git for Windows,
+# and a single mangled byte here is a badge that does not boot -- so say
+# outright that they are binary rather than relying on content detection.
+*.uf2 binary
