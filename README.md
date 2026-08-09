@@ -27,8 +27,9 @@ If the light game matters to you, stop here.
 
 ## ⚠️ This is experimental and it is glitchy
 
-Treat it as a toy, not a tool. It is a hobby build, unsigned by anyone official,
-and unsupported. Known rough edges are listed in [Known
+These exact images have been flashed onto a real badge and run — they boot, and
+the app works. But treat it as a toy, not a tool: it is a hobby build, unsigned
+by anyone official, and unsupported. Known rough edges are listed in [Known
 issues](#known-issues--why-it-feels-glitchy) below — read them before you
 conclude something is broken. Recovery is covered in
 [If it goes wrong](#if-it-goes-wrong).
@@ -199,11 +200,12 @@ whose **loader** hangs at about half of the boot progress bar, before any app
 code ever runs. The cause looks like an assertion in the loader about how
 process images are laid out in the swap area, not a defect in the app itself.
 
-Practically, for you: if the progress bar stops halfway and the BAOCHIP drive
-does not come back, that is this bug, not a bad copy. See
-[If it goes wrong](#if-it-goes-wrong). The `loader.uf2` and `xous.uf2` in this
-repo are byte-identical to a build that boots; only `swap.uf2` — which is where
-the app lives — is new.
+The images in this repo are not affected — they have been flashed and booted.
+The reason to mention it at all is that it is sensitive to how much code the app
+contains, so a *future* build could hit it again, and the symptom is easy to
+mistake for a bad copy: if the progress bar stops halfway and the BAOCHIP drive
+does not come back, that is this bug, not something you did. See
+[If it goes wrong](#if-it-goes-wrong).
 
 ## If it goes wrong
 
